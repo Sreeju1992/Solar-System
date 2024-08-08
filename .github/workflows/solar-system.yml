@@ -33,9 +33,11 @@ jobs:
           run: npm install
 
         - name: Unit testing
+          id: nodejs-unit-testing-step
           run: npm test
 
-        - name: Get the test report file
+        - name: Archive test result file
+          if: always()
           uses: actions/upload-artifact@v4
           with:
             name: Mocha-Test-Result-${{ matrix.operating_system }}-${{ matrix.nodejs_version }}
